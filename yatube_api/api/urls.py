@@ -1,8 +1,11 @@
+from django.urls import include, path
 from rest_framework import routers
 
 from .views import CommentViewSet, FollowViewSet, GroupViewSet, PostViewSet
 
 app_name = 'api'
+
+urlpatterns = [path('v1/', include('djoser.urls.jwt'))]
 
 router = routers.DefaultRouter()
 router.register(r'v1/posts', PostViewSet, basename='posts')
@@ -14,4 +17,4 @@ router.register(
 )
 router.register(r'v1/follow', FollowViewSet, basename='follow')
 
-urlpatterns = router.urls
+urlpatterns += router.urls
